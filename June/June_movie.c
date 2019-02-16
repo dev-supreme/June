@@ -1,102 +1,126 @@
-Ôªø#include <stdio.h>
+#include "June_Movie.h"
+#include <stdio.h>
 #include <stdlib.h>
-#include <conio.h>
+#include <string.h>
+void ListInit(List * pList) {
+	pList->head = NULL;
+	pList->tail = NULL;
+}
 
-void movieProcess(MOVIEDATA* movieList, int flag);
-void addMovie(MOVIEDATA* movieList);
-void searchMovie(MOVIEDATA* movieList);
+int IsListEmpty(List * pList) {
+	if (NULL == pList->head)
+		return TRUE;
+	else
+		return FALSE;
+}
 
-void movieProcess(MOVIEDATA* movieList, int flag) {
-	switch (flag)
-	{
-	case 1:
-		addMovie(movieList);
-		break;
-	case 2:
-		searchMovie(movieList);
-		break;
-	case 3:
-		break;
-	case 4:
-		break;
-	case 5:
-		break;
-	default:
-		break;
+void Insert(List * pList, Data data) {
+	Node * newNode = (Node*)malloc(sizeof(Node));
+	newNode->data = data;
+	newNode->next = NULL;
+	newNode->prev = NULL;
+
+	if (IsListEmpty(pList)) {
+		pList->head = newNode;
+		pList->tail = newNode;
+	}
+	else {
+		newNode->prev = pList->tail;
+		pList->tail->next = newNode;
+		pList->tail = newNode;
 	}
 }
 
-void addMovie(MOVIEDATA* movieList) {
-	size_t curDataSize = sizeof(*movieList);
-	printf("%d\n", curDataSize);
-	size_t newDataSize = curDataSize + (sizeof(MOVIEDATA) * 1);
-	printf("%d\n", newDataSize);
-	movieList = (MOVIEDATA*)realloc(movieList, newDataSize);
+Node * Search(List * pList, const char * title) {
+	if (IsListEmpty(pList)) {
+		printf("List is Empty !");
+		exit(-1);
+	}
+	Node * pNode = pList->head;
+	printf("\n\"%s\" ∞Àªˆ ∞·∞˙ : ", title);
+	while (NULL != pNode) {
+		if (0 == strcmp(pNode->data.title, title)) {
+			PrintData(pNode->data, sizeof(pNode->data.score) / sizeof(int));
+			return pNode;
+		}
+		else
+			pNode = pNode->next;
+	}
+	printf("√£¥¬ øµ»≠∞° æ¯Ω¿¥œ¥Ÿ......");
+	return NULL;
 }
 
-void searchMovie(MOVIEDATA* movieList) {
-
-}
-
-//Î©îÎâ¥Î•º Î≥¥Ïó¨Ï£ºÎäî Ìï®Ïàò 
-int printMenu() {
-	int nInput = 0;
-	system("cls");
-	printf("Í∏∞Îä•ÏùÑ ÏÑ†ÌÉùÌïòÏÑ∏Ïöî(Ïà´ÏûêÎ•º ÎàÑÎ•¥Î©¥ Ìï¥Îãπ Í∏∞Îä•Ïù¥ ÏÑ†ÌÉùÎê©ÎãàÎã§.)\n");
-	printf("1:Ï∂îÍ∞Ä\t2:Í≤ÄÏÉâ\t3:ÏàòÏ†ï\t4:ÏÇ≠Ï†ú\t5:ÌèâÏ†êÎ∂ÄÏó¨\n");
-	char ch = _getch();
-	return ch;
-}
-void Menu(int* flag) {
-	printf("1:Ï∂îÍ∞Ä\t2:Í≤ÄÏÉâ\t3:ÏàòÏ†ï\t4:ÏÇ≠Ï†ú\t5:ÌèâÏ†êÎ∂ÄÏó¨\n");
-	while (1) {
-		char ch = _getch(); //_getchÎäî Î≤ÑÌçºÎ•º Í±∞ÏπòÏßÄ ÏïäÍ≥† Í≥ßÎ∞îÎ°ú Îç∞Ïù¥ÌÑ∞ Î∞òÌôò.
-		if ('1' == ch) {
-			printf("ÏòÅÌôîÏ∂îÍ∞ÄÌïòÍ∏∞\n");
-			*flag = 1;
-			break;
+void Delete(List * pList, const char * title) {
+	Node * delNode = Search(pList, title);
+	if (NULL == delNode) {
+		printf("ªË¡¶«“ øµ»≠∞° ¡∏¿Á«œ¡ˆ æ ¿Ω.\n");
+		return;
+	}
+	else {
+		printf("%s¿Ã(∞°) ªË¡¶ µ«æ˙Ω¿¥œ¥Ÿ.\n",delNode->data.title);
+		if (pList->head == pList->tail) {
+			pList->head = NULL; pList->tail = NULL;
+			free(delNode);
 		}
-		else if ('2' == ch) {
-			printf("ÏòÅÌôîÍ≤ÄÏÉâÌïòÍ∏∞\n");
-			*flag = 2;
-			break;
+		else if (pList->head == delNode ){
+			delNode->next->prev = NULL;
+			pList->head = pList->head->next;
+			pList->head->prev = NULL;
+			free(delNode);
 		}
-		else if ('3' == ch) {
-			printf("ÏòÅÌôîÏàòÏ†ïÌïòÍ∏∞\n");
-			*flag = 3;
-			break;
+		else if (pList->tail == delNode) {
+			pList->tail = pList->tail->prev;
+			pList->tail->next = NULL;
+			free(delNode);
 		}
-		else if ('4' == ch) {
-			printf("ÏòÅÌôîÏÇ≠Ï†úÌïòÍ∏∞\n");
-			*flag = 4;
-			break;
-		}
-		else if ('5' == ch) {
-			printf("ÏòÅÌôîÌèâÏ†êÎ∂ÄÏó¨ÌïòÍ∏∞\n");
-			*flag = 5;
-			break;
-		}
-		else { //ÏòàÏô∏Ï≤òÎ¶¨
-			printf("ERROR. Îã§Ïãú ÏãúÎèÑÌïòÏÑ∏Ïöî\n");
-			*flag = 0;
-			continue;
+		else {
+			delNode->prev->next = delNode->next;
+			delNode->next->prev = delNode->prev;
+			free(delNode);
 		}
 	}
-	printf("Î©îÎâ¥ÏÑ†ÌÉùÏ¢ÖÎ£å\n");
+	return;
 }
 
-int main()
-{
-	const int MOVIENUM = 5; //ÏòÅÌôî Îç∞Ïù¥ÌÑ∞Ïùò Í∞ØÏàò. 
-	int nFlag = 0;//Í∏∞Îä• ÏÑ†ÌÉù flag
-	
-	MOVIEDATA* movieList = (MOVIEDATA*)malloc(sizeof(MOVIEDATA) * MOVIENUM);
-	Menu(&nFlag);
-	printf("malloc size : %d\n", sizeof(*movieList));
-	movieProcess(movieList, nFlag);
-	printf("realloc size : %d\n", sizeof(*movieList));
-	free(movieList);
-	movieList = NULL;
-	
-	return 0;
+//************************************ Movie
+void Modify(List * pList) {
+	//Node * modNode = 
+}
+
+void Score(List * pList, int score) {
+
+}
+
+int GetAvgScore(const Data data, const int NumofScore) {
+	int sum = 0, avgScore;
+	for (int i = 0; i < NumofScore; i++)
+		sum += data.score[i];
+	avgScore = sum / NumofScore;
+	return avgScore;
+}
+
+void PrintList(List * pList) {
+	if (IsListEmpty(pList)) {
+		printf("List is Empty !");
+		exit(-1);
+	}
+	Node * pNode = pList->head;
+	while (NULL != pNode) {
+		PrintData(pNode->data, sizeof(pNode->data.score) / sizeof(int)); //¡°ºˆ ∞πºˆ ≥—∞‹¡÷¥¬ ∞˜
+		pNode = pNode->next;
+	}
+}
+
+void PrintData(const Data data, const int NumofScore) {
+	printf("\n============================\n");
+	printf("¡¶∏Ò : %s\n", data.title);
+	printf("∞®µ∂ : %s\n", data.director);
+	printf("¿Â∏£ : %s\n", data.genre);
+	printf("¡÷ø¨πËøÏ : %s\n", data.actor);
+	printf("∞≥∫¿≥‚µµ : %d\n", data.year);
+	printf("**********¡°ºˆ ∞ËªÍ**********\n");
+	for (int i = 0; i < NumofScore; i++)
+		printf("∆Ú∑–∞° %d¿« ¡°ºˆ= %d\n", i+1, data.score[i]);
+	printf("∆Ú±’ ¡°ºˆ= %d\n", data.avg_score);
+	printf("============================\n");
 }

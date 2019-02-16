@@ -19,11 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DoubleLinkedList.c" />
-    <ClCompile Include="June_movie.c" />
+    <ClCompile Include="June_Movie.c" />
+    <ClCompile Include="June_movie_main.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DoubleLinkedList.h" />
+    <ClInclude Include="June_Movie.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

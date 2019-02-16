@@ -1,7 +1,6 @@
-﻿#pragma once
-#ifndef __DOUBLELINKEDLIST_H__
-#define __DOUBLELINKEDLIST_H__
-#define MAX_SCORE_NUM 10
+﻿#define MAX_SCORE_NUM 3
+#define TRUE 1
+#define FALSE 0
 /*
 실습:  영화 데이터베이스 구축
 영화 정보를 입력받아 파일이 저장한다. 
@@ -16,7 +15,7 @@
 //1.영화정보를 담는 구조체 생성(MOVIEDATA)
 //2.메뉴출력 및 선택 함수 선언 및 정의
 3.메뉴에 따른 각 기능 함수 정의(추가 검색 수정 삭제 평점부여)
--추가 : 영화데이터1개를 추가 함(동적배열로 realloc?)
+-추가 : 영화데이터1개를 추가 함
 -검색 : 영화이름으로 검색하게 함. 검색 성공 시 영화 정보 출력 / 실패 경우 검색실패!
 
 -수정 : 영화이름으로 검색 후, 해당 영화데이터를 수정할 수 있음
@@ -35,7 +34,6 @@ typedef struct _movieData {
 	int score[MAX_SCORE_NUM];
 	int avg_score;
 }Moviedata;
-
 typedef Moviedata Data;
 
 typedef struct _node {
@@ -48,11 +46,16 @@ typedef struct _DLlist {
 	Node * head;
 	Node * tail;
 }DoublyLinkedList;
+
 typedef DoublyLinkedList List;
 
 void ListInit(List * pList);
-void Insert(List * pList, Data data);
 int IsListEmpty(List * pList);
-Data Delete(List * pList);
-
-#endif // !__DOUBLELINKEDLIST_H__
+void Insert(List * pList, Data data);
+void Delete(List * pList, const char * title);
+void Modify(List * pList);
+void Score(List * pList, int score);
+int GetAvgScore(const Data data, const int NumofScore);
+void PrintList(List * pList);
+void PrintData(const Data data, const int NumofScore);
+Node * Search(List * pList, const char * title);
