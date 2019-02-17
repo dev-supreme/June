@@ -30,6 +30,7 @@ void Insert(Node ** root, int nData) {
 	newBt->data = nData;
 	newBt->left = NULL;
 	newBt->right = NULL;
+	newBt->parent = NULL;
 	Node* pRoot = *root;
 
 	if (NULL == pRoot) {
@@ -41,6 +42,7 @@ void Insert(Node ** root, int nData) {
 			if (nData < pNode->data) {
 				if (NULL == pNode->left) {
 					pNode->left = newBt;
+					newBt->parent = pNode;
 					break;
 				}
 				else {
@@ -50,6 +52,7 @@ void Insert(Node ** root, int nData) {
 			else if (nData > pNode->data){
 				if (NULL == pNode->right) {
 					pNode->right = newBt;
+					newBt->parent = pNode;
 					break;
 				}
 				else {
@@ -130,7 +133,7 @@ Node * FindTreeNode(Node ** root, int key) {
 int Delete(Node ** root, int key) {
 	Node * pNode = FindTreeNode(root, key);
 	//3 cases(no child, 1 child, 2 childs)
-	if (NULL == pNode->left && NULL == pNode->right) {
+	if (NULL == pNode->left && NULL == pNode->right) { //no child
 		if (pNode->data < pNode->parent->data)
 			pNode->parent->left = NULL;
 		else
@@ -138,20 +141,43 @@ int Delete(Node ** root, int key) {
 		free(pNode);
 		return 1;
 	}
-	else if (NULL == pNode->left && NULL != pNode->right) {
-		if (pNode->data < pNode->parent->data)
-			pNode->parent->left = NULL;
-		else
-			pNode->parent->right = NULL;
+	else if (NULL == pNode->right && NULL != pNode->left) { //has left child
+		if (pNode->data < pNode->parent->data) {
+			pNode->parent->left = pNode->left;
+			pNode->left->parent = pNode->parent;
+		}
+		else {
+			pNode->parent->right = pNode->left;
+			pNode->left->parent = pNode->parent;
+		}
+		free(pNode);
+		return 1;
 	}
-	else if (NULL == pNode->right && NULL != pNode->left) {
-		if (pNode->data < pNode->parent->data)
-			pNode->parent->left = NULL;
-		else
-			pNode->parent->right = NULL;
+	else if (NULL == pNode->left && NULL != pNode->right) { //has right child
+		if (pNode->data < pNode->parent->data) {
+			pNode->parent->left = pNode->right;
+			pNode->right->parent = pNode->parent;
+		}
+		else {
+			pNode->parent->right = pNode->right;
+			pNode->right->parent = pNode->parent;
+		}
+		free(pNode);
+		return 1;
 	}
-	else {
-
+	else { //has both children
+		if (pNode->data < pNode->parent->data){//왼쪽자식을 올리는 것으로 통일
+			pNode->parent->left = pNode->left;
+			pNode->left->parent = pNode->parent;
+			pNode->left->right = pNode->right;
+		}
+		else {
+			pNode->parent->right = pNode->left; 
+			pNode->left->parent = pNode->parent;
+			pNode->left->right = pNode->right;
+		}
+		free(pNode);
+		return 1;
 	}
 	return 0;
 }
@@ -163,13 +189,22 @@ int main() {
 	Insert(&root, 5);
 	Insert(&root, 14);
 	Insert(&root, 12);
+	Insert(&root, 13);
+	Insert(&root, 15);
 	Insert(&root, 2);
 	Insert(&root, 17);
 	Insert(&root, 4);
 	Insert(&root, 9);
 	TreeLelvelOrder(root);
+	Delete(&root, 2);
+	Delete(&root, 12);
+	Delete(&root, 15);
+	Delete(&root, 5);
+	Delete(&root, 17);
+	Delete(&root, 4);
+	Delete(&root, 9);
+	printf("\n\nAfter Delete\n");
+	TreeLelvelOrder(root);
 
-	printf("\n\nFind node %d\n", FindTreeNode(&root, 14)->data);
-	//printf("\n\nFind node %d\n", Delete(&root,14)->data);
 	return 0;
 }
