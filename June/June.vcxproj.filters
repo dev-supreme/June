@@ -15,16 +15,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="June_movie_main.c">
+    <ClCompile Include="June_TreewithQ.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="June_Movie.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="June_Movie.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

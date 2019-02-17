@@ -114,28 +114,6 @@ int main()
 		default:
 			break;
 		}
-		/*
-		Data myMovies[NUM_OF_MOVIE] = {
-			{"극한직업",	"이병헌","코미디","진선규",2019,{0},0},
-			{"범죄와의 전쟁",	"윤종빈","느와르","최민식",2012,{0},0},
-			{"Guardians of the Galaxy","James Gunn","SF","Chris Pratt",2014,{0},0}
-		};
-
-		for (int i = 0; i < NUM_OF_MOVIE; i++)
-			Insert(&movieList, myMovies[i]);
-
-		PrintList(&movieList);
-		Search(&movieList, "ddd");
-		Search(&movieList, "극한직업");
-		Search(&movieList, "범죄와의 전쟁");
-		Search(&movieList, "Guardians of the Galaxy");
-
-		Delete(&movieList, "ddd");
-		Delete(&movieList, "Guardians of the Galaxy");
-		Delete(&movieList, "범죄와의 전쟁");
-		Delete(&movieList, "극한직업"); //tail부터 삭제
-		PrintList(&movieList);
-		*/
 	}
 	fclose(fp);
 	return 0;

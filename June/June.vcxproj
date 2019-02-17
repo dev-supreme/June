@@ -19,11 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="June_Movie.c" />
-    <ClCompile Include="June_movie_main.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="June_Movie.h" />
+    <ClCompile Include="June_TreewithQ.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
