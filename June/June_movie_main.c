@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "June_Movie.h"
-#define NUM_OF_MOVIE 3
 void ListInit(List * pList);
 int IsListEmpty(List * pList);
 void Insert(List * pList, Data data);
