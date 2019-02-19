@@ -18,10 +18,17 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="June_movie.c" />
+    <ClCompile Include="June_movie_main.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="June_Movie.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{C5EC9844-DF8E-4148-9116-877DBEAA1A49}</ProjectGuid>
-    <RootNamespace>June</RootNamespace>
+    <ProjectGuid>{C511AC5D-0B83-4093-B2E1-A9A603A8E88B}</ProjectGuid>
+    <RootNamespace>JuneMovie</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -98,7 +105,6 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

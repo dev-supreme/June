@@ -1,0 +1,5 @@
+﻿  June_movie.c
+c:\users\rlawn\documents\github\june\june_movie\june_movie.c(43): warning C4020: 'PrintData': 실제 매개 변수가 너무 많습니다.
+  June_movie_main.c
+  코드를 생성하고 있습니다...
+  June_Movie.vcxproj -> C:\Users\rlawn\Documents\GitHub\June\Debug\June_Movie.exe

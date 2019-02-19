@@ -30,6 +30,7 @@ typedef struct _movieData {
 	char director[32];
 	char genre[32];
 	char actor[32];
+	int idx;
 	int year;
 	int score[MAX_SCORE_NUM];
 	int avg_score;
@@ -57,5 +58,6 @@ void Modify(List * pList);
 void Score(List * pList, int score);
 int GetAvgScore(const Data data, const int NumofScore);
 void PrintList(List * pList);
-void PrintData(const Data data, const int NumofScore);
+void PrintData(const Data data);
+void PrintDetail(const Data data);
 Node * Search(List * pList, const char * title);

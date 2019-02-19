@@ -9,7 +9,7 @@ void Modify(List * pList);
 void Score(List * pList, int score);
 int GetAvgScore(const Data data, const int NumofScore);
 void PrintList(List * pList);
-void PrintData(const Data data, const int NumofScore);
+void PrintData(const Data data);
 Node * Search(List * pList, const char * title);
 void Delete(List * pList, const char * title);
 //메뉴를 보여주는 함수 
@@ -19,7 +19,7 @@ void Menu(int* flag) {
 	char ch[10]; 
 	scanf("%s", ch);
 	while (1) {
-		if (strlen(ch) != 1) {
+		if (strlen(ch) != 1) { //strlen을 쓰니까 좀 아까움(비용이 비쌈)
 			printf("ERROR. 다시 시도하세요\n");
 			*flag = 0;
 			break;
@@ -75,6 +75,7 @@ int main()
 	ListInit(&movieList);
 	int flag = 0;
 	Data movieData;
+	movieData.idx = 0;
 	char szBuffer[512];
 	while (1) {
 		Menu(&flag);
@@ -84,6 +85,7 @@ int main()
 			fp = fopen("MovieTest.dat", "wb");
 			if (fp == NULL) return 0; 
 			getchar(); //Buffer Flush
+			movieData.idx += 1; //index를 1씩 증가시킨다.
 			printf("제목 : "); gets_s(movieData.title,sizeof(movieData.title));
 			printf("감독 : "); gets_s(movieData.director, sizeof(movieData.director));
 			printf("장르 : "); gets_s(movieData.genre, sizeof(movieData.genre));

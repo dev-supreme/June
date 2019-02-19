@@ -106,12 +106,18 @@ void PrintList(List * pList) {
 	}
 	Node * pNode = pList->head;
 	while (NULL != pNode) {
-		PrintData(pNode->data, sizeof(pNode->data.score) / sizeof(int)); //점수 갯수 넘겨주는 곳
+		PrintData(pNode->data); //점수 갯수 넘겨주는 곳
 		pNode = pNode->next;
 	}
+	//여기서 PrintDetail할건지 선택하라고...?
+	printf("\n");
 }
 
-void PrintData(const Data data, const int NumofScore) {
+void PrintData(const Data data) {
+	printf("제목: %s(%d)\t", data.title,data.year);
+}
+
+void PrintDetail(const Data data) {
 	printf("\n============================\n");
 	printf("제목 : %s\n", data.title);
 	printf("감독 : %s\n", data.director);
@@ -119,8 +125,6 @@ void PrintData(const Data data, const int NumofScore) {
 	printf("주연배우 : %s\n", data.actor);
 	printf("개봉년도 : %d\n", data.year);
 	printf("**********점수 계산**********\n");
-	for (int i = 0; i < NumofScore; i++)
-		printf("평론가 %d의 점수= %d\n", i+1, data.score[i]);
-	printf("평균 점수= %d\n", data.avg_score);
+	printf("점수= %d\n", data.avg_score);
 	printf("============================\n");
 }
