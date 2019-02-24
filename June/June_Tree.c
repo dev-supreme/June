@@ -1,25 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-typedef struct _bTreeNode {
-	int data;
-	int depth;
-	struct _bTreeNode * left;
-	struct _bTreeNode * right;
-	struct _bTreeNode * parent;
-}BTreeNode;
-typedef BTreeNode Node;
-
-typedef struct _qNode {
-	Node * data;
-	struct _qNode * next;
-}QNODE;
-
-typedef struct _queue {
-	QNODE * front;
-	QNODE * rear;
-}QUEUE;
-
+#include "June_Tree.h"
 void QueueInit(QUEUE * pq) {
 	pq->front = NULL;
 	pq->rear = NULL;
@@ -133,39 +114,39 @@ Node * FindTreeNode(Node ** root, int key) {
 int Delete(Node ** root, int key) {
 	Node * pNode = FindTreeNode(root, key);
 	//3 cases(no child, 1 child, 2 childs)
-	if (NULL == pNode->left && NULL == pNode->right) { //no child
-		if (pNode->data < pNode->parent->data)
+	if (NULL == pNode->left && NULL == pNode->right) { //I have no child
+		if (pNode->data < pNode->parent->data)//If I am left of my parent
 			pNode->parent->left = NULL;
-		else
+		else                             //If I am right of my parent
 			pNode->parent->right = NULL;
 		free(pNode);
-		return 1;
+		return TRUE;
 	}
-	else if (NULL == pNode->right && NULL != pNode->left) { //has left child
-		if (pNode->data < pNode->parent->data) {
-			pNode->parent->left = pNode->left;
+	else if (NULL == pNode->right && NULL != pNode->left) { //I have left child
+		if (pNode->data < pNode->parent->data) { //If I am left of my parent
+			pNode->parent->left = pNode->left; //Connect Parent's left with my left child
 			pNode->left->parent = pNode->parent;
 		}
-		else {
-			pNode->parent->right = pNode->left;
+		else {//If I am right of my parent
+			pNode->parent->right = pNode->left; //Connect Parent's right with my left child
 			pNode->left->parent = pNode->parent;
 		}
 		free(pNode);
-		return 1;
+		return TRUE;
 	}
-	else if (NULL == pNode->left && NULL != pNode->right) { //has right child
-		if (pNode->data < pNode->parent->data) {
-			pNode->parent->left = pNode->right;
+	else if (NULL == pNode->left && NULL != pNode->right) { //I have right child
+		if (pNode->data < pNode->parent->data) {//If I am left of my parent
+			pNode->parent->left = pNode->right; //Connect Parent's left with my right child
 			pNode->right->parent = pNode->parent;
 		}
-		else {
-			pNode->parent->right = pNode->right;
+		else {//If I am right of my parent
+			pNode->parent->right = pNode->right;//Connect Parent's right with my right child
 			pNode->right->parent = pNode->parent;
 		}
 		free(pNode);
-		return 1;
+		return TRUE;
 	}
-	else { //has both children
+	else { //I have both(left, right) children
 		if (pNode->data < pNode->parent->data){//왼쪽자식을 올리는 것으로 통일
 			pNode->parent->left = pNode->left;
 			pNode->left->parent = pNode->parent;
@@ -177,34 +158,7 @@ int Delete(Node ** root, int key) {
 			pNode->left->right = pNode->right;
 		}
 		free(pNode);
-		return 1;
+		return TRUE;
 	}
-	return 0;
-}
-
-int main() {
-	Node * root = NULL;
-	Insert(&root,10);
-	Insert(&root, 3);
-	Insert(&root, 5);
-	Insert(&root, 14);
-	Insert(&root, 12);
-	Insert(&root, 13);
-	Insert(&root, 15);
-	Insert(&root, 2);
-	Insert(&root, 17);
-	Insert(&root, 4);
-	Insert(&root, 9);
-	TreeLelvelOrder(root);
-	Delete(&root, 2);
-	Delete(&root, 12);
-	Delete(&root, 15);
-	Delete(&root, 5);
-	Delete(&root, 17);
-	Delete(&root, 4);
-	Delete(&root, 9);
-	printf("\n\nAfter Delete\n");
-	TreeLelvelOrder(root);
-
-	return 0;
+	return FALSE;
 }

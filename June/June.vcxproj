@@ -18,6 +18,13 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="June_main.c" />
+    <ClCompile Include="June_Tree.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="June_Tree.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{C5EC9844-DF8E-4148-9116-877DBEAA1A49}</ProjectGuid>
