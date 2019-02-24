@@ -1,4 +1,3 @@
-#pragma once
 #ifndef __JUNE_TREE_H__
 #define __JUNE_TREE_H__
 #define TRUE 1

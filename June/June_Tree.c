@@ -5,7 +5,6 @@ void QueueInit(QUEUE * pq) {
 	pq->front = NULL;
 	pq->rear = NULL;
 }
-
 void Insert(Node ** root, int nData) {
 	Node * newBt = (Node*)malloc(sizeof(Node));
 	newBt->data = nData;
@@ -43,7 +42,6 @@ void Insert(Node ** root, int nData) {
 		}
 	}
 }
-
 void Enqueue(QUEUE * pq, Node * data, int depth) {
 	QNODE * newNode = (QNODE*)malloc(sizeof(QNODE));
 	newNode->data = data;
@@ -59,7 +57,6 @@ void Enqueue(QUEUE * pq, Node * data, int depth) {
 		pq->rear = newNode;
 	}
 }
-
 Node * Dequeue(QUEUE * pq) {
 	QNODE * pNode = pq->front;
 	if (NULL == pNode) return NULL;
@@ -69,7 +66,6 @@ Node * Dequeue(QUEUE * pq) {
 	pNode = NULL;
 	return Data;
 }
-
 void TreeLelvelOrder(Node * root) {
 	QUEUE q;
 	QueueInit(&q);
@@ -114,6 +110,9 @@ Node * FindTreeNode(Node ** root, int key) {
 int Delete(Node ** root, int key) {
 	Node * pNode = FindTreeNode(root, key);
 	//3 cases(no child, 1 child, 2 childs)
+	if (NULL == pNode) {
+		return FALSE;
+	}
 	if (NULL == pNode->left && NULL == pNode->right) { //I have no child
 		if (pNode->data < pNode->parent->data)//If I am left of my parent
 			pNode->parent->left = NULL;

@@ -15,15 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="June_Tree.h">
+    <ClInclude Include="June_Heap.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="June_Tree.c">
+    <ClCompile Include="June_main.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="June_main.c">
+    <ClCompile Include="June_Heap.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
