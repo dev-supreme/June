@@ -14,7 +14,7 @@ void Heapify(int* arr, int size, int mid) {
 		largest_node = left_node;
 	}
 
-	if (right_node < size && arr[right_node] > arr[largest_node]) {
+	if (right_node < size && arr[right_node] > arr[largest_node]) { 
 		largest_node = right_node;
 	}
 
