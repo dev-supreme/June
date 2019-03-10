@@ -19,11 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="June_Heap.c" />
+    <ClCompile Include="June_BTree.c" />
     <ClCompile Include="June_main.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="June_Heap.h" />
+    <ClInclude Include="June_BTree.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

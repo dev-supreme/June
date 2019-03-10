@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="June_Heap.h">
+    <ClInclude Include="June_BTree.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -23,7 +23,7 @@
     <ClCompile Include="June_main.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="June_Heap.c">
+    <ClCompile Include="June_BTree.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

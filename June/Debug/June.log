@@ -1,2 +1,13 @@
-﻿  June_Heap.c
+﻿  June_BTree.c
+c:\users\rlawn\documents\github\june\june\june_btree.c(36): warning C4133: '=': 'node *'과(와) 'Node *' 사이의 형식이 호환되지 않습니다.
+c:\users\rlawn\documents\github\june\june\june_btree.c(38): warning C4133: '=': 'node *'과(와) 'Node *' 사이의 형식이 호환되지 않습니다.
+c:\users\rlawn\documents\github\june\june\june_btree.c(48): warning C4133: '=': 'node *'과(와) 'Node *' 사이의 형식이 호환되지 않습니다.
+c:\users\rlawn\documents\github\june\june\june_btree.c(50): warning C4133: '=': 'node *'과(와) 'Node *' 사이의 형식이 호환되지 않습니다.
+c:\users\rlawn\documents\github\june\june\june_btree.c(52): warning C4133: '=': 'node *'과(와) 'Node *' 사이의 형식이 호환되지 않습니다.
+c:\users\rlawn\documents\github\june\june\june_btree.c(62): warning C4133: '=': 'Node *'과(와) 'node *' 사이의 형식이 호환되지 않습니다.
+c:\users\rlawn\documents\github\june\june\june_btree.c(63): warning C4133: '=': 'Node *'과(와) 'node *' 사이의 형식이 호환되지 않습니다.
+c:\users\rlawn\documents\github\june\june\june_btree.c(65): warning C4133: '=': 'Node *'과(와) 'node *' 사이의 형식이 호환되지 않습니다.
+c:\users\rlawn\documents\github\june\june\june_btree.c(66): warning C4047: '=': 'node *'의 간접 참조 수준이 'int (__cdecl *)(const char *const ,...)'과(와) 다릅니다.
+  June_main.c
+  코드를 생성하고 있습니다...
   June.vcxproj -> C:\Users\rlawn\Documents\GitHub\June\Debug\June.exe
