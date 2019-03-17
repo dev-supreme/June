@@ -19,6 +19,6 @@ typedef struct _node {
 
 Node * createNode(int data);
 int InsertNode(Node ** root, int data);
-
-
+int DeleteNode(Node ** root, int data);
+Node* SearchNode(Node ** root, int data);
 #endif // !__JUNE_BTREE_H__

@@ -10,59 +10,30 @@ Node * createNode(int data) {
 	return newNode;
 }
 
-int InsertNode(Node ** root, int data) {
+Node * SearchNode(Node ** root, int data) {
 	Node * pNode = *root;
-	if (NULL == pNode) {
-		*root = createNode(data);
-	}
-	else {
-		//Split
-		while (NULL != pNode) {
-			if (TWO_NODE == pNode->nodeType) {
-				if (NULL == pNode->child[0]) {
-					//InsertData
-					if (data < pNode->data[0]) {
-						pNode->data[1] = pNode->data[0];
-						pNode->data[0] = data;
+	while (1) {
+		if (NULL == pNode)
+			return NULL;
+		else {
+			while(NULL != pNode){
+				if (TWO_NODE == pNode->nodeType) {
+					if (data == pNode->data[0]) {
+						return pNode;
 					}
-					else if (data > pNode->data[0]) {
-						pNode->data[1] = data;
+					else {
+						if (data < pNode->data[0])
+							pNode = pNode->child[0];
+						else if (data > pNode->data[0] && data < pNode->data[1])
+							pNode = pNode->child[1];
 					}
-					pNode->nodeType = THREE_NODE;
-					break;
 				}
-				else {
-					if (data < pNode->data[0])
-						pNode = pNode->child[0];
-					else if (data > pNode->data[0] && data < pNode->data[1])
-						pNode = pNode->child[1];
-				}
-			}
-			else if (THREE_NODE == pNode->nodeType) {
-				if (NULL == pNode->child[0]) {
-					//InsertData
-					if (data < pNode->data[0]) {
-						pNode->data[3] = pNode->data[2];
-						pNode->data[2] = pNode->data[1];
-						pNode->data[1] = pNode->data[0];
-						pNode->data[0] = data;
+				else if (THREE_NODE == pNode->nodeType) {
+					for (int i = 0; i < 2; i++) {
+						if (data == pNode->data[i]) {
+							return pNode;
+						}
 					}
-					else if (data > pNode->data[0] && data < pNode->data[1]) {
-						pNode->data[3] = pNode->data[2];
-						pNode->data[2] = pNode->data[1];
-						pNode->data[1] = data;
-					}
-					else if (data > pNode->data[1] && data < pNode->data[2]) {
-						pNode->data[3] = pNode->data[2];
-						pNode->data[2] = data;
-					}
-					else if (data > pNode->data[2]) {
-						pNode->data[3] = data;
-					}				
-					pNode->nodeType = FOUR_NODE;
-					break;
-				}
-				else {
 					if (data < pNode->data[0])
 						pNode = pNode->child[0];
 					else if (data > pNode->data[0] && data < pNode->data[1])
@@ -70,25 +41,27 @@ int InsertNode(Node ** root, int data) {
 					else if (data > pNode->data[1])
 						pNode = pNode->child[2];
 				}
-			}
-			else if (FOUR_NODE == pNode->nodeType) {
-				//Split
-				if (NULL == pNode->parent) {
-					Node * newNode1 = createNode(pNode->data[0]);
-					Node * newNode2= createNode(pNode->data[2]);
-					pNode->nodeType = TWO_NODE;
-					pNode->data[0] = pNode->data[1];
-					pNode->child[0] = newNode1;
-					pNode->child[1] = newNode2;
-
-					newNode1->parent = pNode;
-					newNode2->parent = printf;
-				}
-				else {
-					//split inplementation
+				else if (FOUR_NODE == pNode->nodeType) {
+					for (int i = 0; i < 3; i++) {
+						if (data == pNode->data[i]) {
+							return pNode;
+						}
+					}
+					//Å½»ö
 				}
 			}
 		}
 	}
-	return 0;
+}
+
+int DeleteNode(Node ** root, int data) {
+	Node * pNode = *root; 
+	while (NULL != pNode) {
+		if (TWO_NODE == pNode->nodeType) {
+		}
+		else if (THREE_NODE == pNode->nodeType) {
+		}
+		else if (FOUR_NODE == pNode->nodeType) {
+		}
+	}
 }
